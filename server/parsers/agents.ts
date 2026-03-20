@@ -4,6 +4,12 @@ import matter from 'gray-matter'
 import { AGENTS_DIR } from '../constants.js'
 import type { AgentDefinition } from '../../src/types/index.js'
 
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map(String)
+  if (typeof value === 'string') return value.split(',').map(t => t.trim()).filter(Boolean)
+  return []
+}
+
 export function loadAgents(): AgentDefinition[] {
   if (!fs.existsSync(AGENTS_DIR)) return []
 
@@ -15,14 +21,7 @@ export function loadAgents(): AgentDefinition[] {
     const raw = fs.readFileSync(filePath, 'utf-8')
     const { data } = matter(raw)
 
-    let tools: string[] = []
-    if (data.tools) {
-      if (Array.isArray(data.tools)) {
-        tools = data.tools
-      } else if (typeof data.tools === 'string') {
-        tools = data.tools.split(',').map((t: string) => t.trim()).filter(Boolean)
-      }
-    }
+    const tools = normalizeStringArray(data.tools)
 
     agents.push({
       name: data.name || path.basename(file, '.md'),
@@ -32,7 +31,7 @@ export function loadAgents(): AgentDefinition[] {
       tools,
       maxTurns: data.maxTurns ?? data.max_turns ?? 10,
       memory: data.memory || 'none',
-      disallowedTools: data.disallowedTools || data.disallowed_tools || undefined,
+      disallowedTools: normalizeStringArray(data.disallowedTools || data.disallowed_tools),
       filePath,
     })
   }

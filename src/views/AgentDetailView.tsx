@@ -94,7 +94,7 @@ export default function AgentDetailView() {
         <p className="text-sm text-[var(--text-secondary)] mb-4">{agent.description}</p>
 
         {/* Tools list */}
-        {agent.tools.length > 0 && (
+        {Array.isArray(agent.tools) && agent.tools.length > 0 && (
           <div className="mb-4">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
               <Wrench className="w-3.5 h-3.5" /> Tools ({agent.tools.length})
@@ -113,7 +113,7 @@ export default function AgentDetailView() {
         )}
 
         {/* Disallowed tools */}
-        {agent.disallowedTools && agent.disallowedTools.length > 0 && (
+        {Array.isArray(agent.disallowedTools) && agent.disallowedTools.length > 0 && (
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
               Disallowed Tools
