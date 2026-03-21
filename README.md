@@ -21,7 +21,7 @@ Claude Dashboard bridges that gap. It reads from `~/.claude/` (the same director
 ## Quick Start
 
 ```bash
-git clone https://github.com/ek33450505/claude-dashboard.git
+git clone https://github.com/ek33450505/claude-code-dashboard.git
 cd claude-dashboard
 npm install
 npm run dev
@@ -122,16 +122,16 @@ Overview of your Claude Code installation: file counts (agents, commands, skills
 
 ## Companion: Claude Agent Team
 
-This dashboard pairs with **[Claude Agent Team](https://github.com/ek33450505/claude-agent-team)** — a framework of 22 specialized agents, 23 slash commands, and 9 skills that supercharge Claude Code.
+This dashboard pairs with **[Claude Agent Team](https://github.com/ek33450505/claude-agent-team)** — a framework of 23 specialized agents, 24 slash commands, and 9 skills that supercharge Claude Code.
 
 ```
 ┌─────────────────────────────┐     ┌─────────────────────────────┐
 │   Claude Agent Team         │     │   Claude Dashboard          │
 │                             │     │                             │
-│   22 agents, 23 commands,   │────▶│   Real-time agent activity  │
+│   23 agents, 24 commands,   │────▶│   Real-time agent activity  │
 │   9 skills, hooks, rules    │     │   Session history & replay  │
 │                             │     │   Agent roster & stats      │
-│   Config layer (no runtime) │     │   Memory & knowledge viewer │
+│   Orchestration layer       │     │   Memory & knowledge viewer │
 └─────────────────────────────┘     │   System health overview    │
           ~/.claude/                │                             │
                                     │   React 19 + Vite + Express │
